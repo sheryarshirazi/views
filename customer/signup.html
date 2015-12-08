@@ -1,0 +1,104 @@
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up Form | Customer</title>
+  <link rel="stylesheet" href="https://raw.githubusercontent.com/necolas/normalize.css/master/normalize.css">
+  <!-- <link href='http://fonts.googleapis.com/css?family=Nunito:400,300' rel='stylesheet' type='text/css'> -->
+  <link rel="stylesheet" href="../css/main.css">
+  
+</head>
+
+<body>
+  <h1>Dihari</h1>
+  <hr>
+  <form action="index.html" method="post">
+  
+    <h2>Registration for Customer</h2>
+    
+
+    <fieldset>
+      <legend><span class="number">1</span>Your basic info</legend>
+      
+      <label for="fname">First Name:</label>
+      <input type="text" id="fname" name="first_name">
+
+      <label for="lname">Last Name:</label>
+      <input type="text" id="name" name="last_name">
+
+      <label for="email">Email:</label>
+      <input type="email" id="mail" name="customer_email">
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="customer_password">
+      
+      <label for="dob">Date of birth:</label>
+      <input type="date" id="dob" name="customer_dob">
+
+      <label>Gender:</label>
+      <input type="radio" id="male" value="1" name="gender">
+      <label for="male" class="light">Male</label>
+      <br>
+      <input type="radio" id="female" value="0" name="gender">
+      <label for="female" class="light">Female</label>
+      
+      <br><br>
+
+      <label for="cnic">CNIC:</label>
+      <input type="number" id="cnic" name="customer_cnic">
+
+      <label for="mobile">Mobile:</label>
+      <input type="number" id="mobile" name="customer_mobile">
+    </fieldset>
+
+    <fieldset>
+      <legend><span class="number">2</span>Your profile</legend>
+       <label for="type">Type:</label>
+      <select id="type" name="customer_type">
+        <optgroup label="Company">
+          <option value="company">Company</option>
+        </optgroup>
+        <optgroup label="Individual">
+          <option value="individual">Individual</option>
+        </optgroup>
+      </select>
+    </fieldset>
+    
+    <fieldset>
+      <label for="bio">Biography:</label>
+      <textarea id="bio" name="customer_bio"></textarea>
+      
+      <label class="comp" for="company_name">Company Name</label>
+      <input type="number" id="company_name" name="company_name" class="comp">
+
+      <label>Interests:</label>
+      <input type="checkbox" id="construction" value="interest_construction" name="customer_interest">
+      <label class="light" for="construction">Construction</label>
+      <br>
+      <input type="checkbox" id="repairing" value="interest_repairing" name="customer_interest">
+      <label class="light" for="repairing">Repairing</label>
+      <br>
+      <input type="checkbox" id="teaching" value="interest_teaching" name="customer_interest">
+      <label class="light" for="teaching">Teaching</label>
+      <br>
+      <input type="checkbox" id="business" value="interest_business" name="customer_interest">
+      <label class="light" for="business">Business</label>
+
+    </fieldset>
+    <button type="submit">Sign Up</button>
+  </form>
+  <script src="../js/jquery.js"></script>
+  <script>
+      $('#type').change(function(){
+        var type = $(this).val(); 
+        if(type=='individual'){
+          $('.comp').hide();
+        }else{
+          $('.comp').show();
+
+        }
+
+      });
+  </script>
+</body>
+
+</html>
