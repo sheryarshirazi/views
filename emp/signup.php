@@ -1,35 +1,48 @@
 <?php 
   include_once '../core/init.php';
   
-  if (isset($_POST['signup']) && !empty($_POST) ) {
-    // print_r($_POST); 
-    
-    $reg = new UserRegistration();
+    if (isset($_POST['signup']) && !empty($_POST) ) {
+        // print_r($_POST); 
+        // exit();
+        $reg = new UserRegistration();
 
-    $username = $_POST['username'];
-    $dob = $_POST['dob']; 
-    $age = General::dob2age($dob);
-    $gender = $_POST['gender']; 
+        $firstName = $_POST['first_name'];
+        $lastName = $_POST['last_name'];
 
-    $city = $_POST['city'];
-    $country = $_POST['country'];
-    $postCode = $_POST['postal'];
-    $cellNumber = $_POST['user_mobile'];
-    $cnic = $_POST['cnic'];
-    
-    $address = $_POST['address'];
-    $joinDate = ''; //current date
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $username= $_POST['username'];
-    $cvUrl = "";
+        $username = $_POST['username'];
+        $dob = $_POST['dob']; 
+        $age = General::dob2age($dob);
+        $gender = $_POST['gender']; 
 
-    $reg->registerUser($username, $age, $gender, $city, $country, $postCode, $cellNumber, $cnic, $dob,
-    $address, $joinDate, $email, $password, $cvUrl, $username);
+        $city = $_POST['city'];
+        $country = $_POST['country'];
+        $postCode = $_POST['postal'];
+        $cellNumber = $_POST['user_mobile'];
+        $cnic = $_POST['cnic'];
 
-  } /*else {
-    # code...
-  }*/
+        $address = $_POST['address'];
+        $joinDate = ''; //current date
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+        $username= $_POST['username'];
+        $cvUrl = "";
+
+        $userType = $_POST['user_type']; 
+
+        $done = $reg->registerUser($firstName,$username, $age, $gender, $city, $country, $postCode, $cellNumber, $cnic, $dob,
+        $address, $email, $password, $cvUrl, $userType);
+
+        if($done)
+            header("Location: $pageName?success"); 
+
+        if( isset(Error::$instantError) && !empty(Error::$instantError) )
+            echo Error::$instantError;
+
+
+    }
+  
+    if (isset($_GET['success'])/* && !empty($_GET['success'])*/)
+        echo "Registered Successfully."; 
   
 
 ?>
@@ -52,14 +65,14 @@
     <fieldset>
       <legend><span class="number">1</span>Your basic info</legend>
       
-      <label for="username">User Name:</label>
-      <input type="text" id="username" name="username">
-
       <label for="fname">First Name:</label>
       <input type="text" id="fname" name="first_name">
-      
+
       <label for="lname">Last Name:</label>
       <input type="text" id="lname" name="last_name">
+      
+      <label for="username">User Name:</label>
+      <input type="text" id="username" name="username" value="<?php if(isset($username)) echo $username; ?>">
       
       <label for="email">Email:</label>
       <input type="email" id="email" name="email">
@@ -103,8 +116,8 @@
       <textarea id="bio" name="user_bio"></textarea>
     </fieldset>
     <fieldset>
-      <label for="account_status">Job Role:</label>
-      <select id="account_status" name="account_status">
+      <label for="user_type">Job Role:</label>
+      <select id="user_type" name="user_type">
         <optgroup label="Company">
           <option value="registered_company">Registered</option>
           <option value="non_registered_company">Non Registered</option>

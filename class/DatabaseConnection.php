@@ -11,7 +11,7 @@ class DatabaseConnection
 	public function connect()
 	{
 		$host   = 'localhost';
-		$dbname = 'test';
+		$dbname = 'dihari';
 		$db_username = 'root'; 
 		$db_password = '';
 

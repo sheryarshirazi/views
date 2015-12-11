@@ -3,5 +3,8 @@
 	include_once '../class/Error.php'; 
 	include_once '../class/UserRegistration.php'; 
 	include_once '../class/User.php'; 
-	include_once '../class/DatabaseConnection.php'; 
+	include_once '../class/DatabaseConnection.php';
+
+	$pageName = basename($_SERVER['PHP_SELF']);
+
 ?>
