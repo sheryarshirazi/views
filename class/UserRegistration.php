@@ -30,27 +30,21 @@ class UserRegistration
 		    
 		    $account_status_id = $conn->lastInsertId();
 
-		    // // user_type return user_type_id
+		    // user_type return user_type_id
 		    $conn->query("INSERT INTO `user_type` (user_typeName) VALUES('". $userType ."');");
 		    $user_type_id = $conn->lastInsertId();
 
 
-		    // // // city return city_id
+		    // city return city_id
 		    $conn->query("INSERT INTO `city` (city_name) VALUES('". $city ."');");
 		    $city_id = $conn->lastInsertId();
 
-		    // // country return country_id
+		    // country return country_id
 		    $conn->query("INSERT INTO `country` (country_name) VALUES('". $country ."');");
 		    $country_id = $conn->lastInsertId();
 
-		    // // user
-		    echo "INSERT INTO `users` (name,email,address,user_type_id,date_time,cnic,age,gender,city_id,country_id,
-		    	postalCode,DOB,password,account_status_id) 
-		    VALUES('".$firstName."','".$email."','".$address."','".$user_type_id."','".date("Y-m-d H:i:s")."','".$cnic."',
-		    	".$age.",'".$gender."','".$city_id."','".$country_id."','".$postCode."','".$dob."','".$password."',".$account_status_id.");";
-	exit();
-	
-		    $conn->query("INSERT INTO `users` (name,email,address,user_type_id,date_time,cnic,age,gender,city_id,country_id,
+		    // user
+		    $conn->query("INSERT INTO `users` (name,email,address,user_type_id,date_time,cnic_no,age,gender,city_id,country_id,
 		    	postalCode,DOB,password,account_status_id) 
 		    VALUES('".$firstName."','".$email."','".$address."','".$user_type_id."','".date("Y-m-d H:i:s")."','".$cnic."',
 		    	".$age.",'".$gender."','".$city_id."','".$country_id."','".$postCode."','".$dob."','".$password."',".$account_status_id.");");
@@ -62,7 +56,7 @@ class UserRegistration
 		    
 		    $conn->rollBack();
 		    die($e->getMessage());
-		    // Error::$instantError = $e->getMessage();
+		    Error::$instantError = $e->getMessage();
 
 		}
 
